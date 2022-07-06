@@ -60,7 +60,7 @@ body {
   margin-bottom: 2.4rem;
 }
 
-.products__item-img-wrapper {
+.products__item-img-wrapper{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,7 +68,8 @@ body {
   height: 6.6rem;
 }
 
-.products__item-img {
+.products__item-img,
+.cart__content-item-img {
   height: 100%;
 }
 
@@ -115,7 +116,7 @@ body {
   border-radius: 50%;
   cursor: pointer;
 }
-.products__item-activities-btn:focus {
+.products__item-activities-btn:active {
   transform: scale(0.9);
 }
 
@@ -139,8 +140,110 @@ body {
   cursor: pointer;
 }
 
-.products__item-btn:focus {
+.products__item-btn:active {
   transform: scale(0.9) translateY(-50%);
+}
+
+.cart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #38383A;
+  padding: 2.4rem;
+}
+
+.cart__title {
+  font-size: 3.2rem;
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.cart__edit-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cart__edit-button {
+  background: none;
+  border: none;
+  color: #F05D23;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.cart__content {
+  padding: 1.6rem 0;
+}
+
+.cart__content-head {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem;
+  color: rgba(255, 239, 231, 0.5);
+  border-bottom: 0.1rem solid rgba(254, 222, 199, 0.15);
+  font-size: 1.2rem;
+}
+
+.cart__content-row {
+  display: flex;
+  align-items: center;
+  padding: 1.6rem 0.8rem 1.6rem 0;
+  border-bottom: 0.1rem solid rgba(254, 222, 199, 0.15);
+}
+
+.cart__content-item-img-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+  height: 6.6rem;
+}
+
+.cart__content-item-img {
+  height: 100%;
+}
+
+.cart__content-head-img {
+  width: 8rem;
+}
+
+.cart__content-item-name,
+.cart__content-head-name {
+  flex: 3;
+}
+
+.cart__content-item-count,
+.cart__content-head-count {
+  display: inline-block;
+  flex: 1;
+  margin: 0 0.8rem;
+  text-align: center;
+}
+
+.cart__content-item-price,
+.cart__content-head-price {
+  flex: 1.5;
+  text-align: end;
+}
+
+.cart__total {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 1.2rem;
+}
+
+.cart__total-txt {
+  color: rgba(255, 239, 231, 0.5);
+  margin-right: 0.8rem;
+}
+
+.cart__total-price {
+  color: #F05D23;
+  font-size: 2.4rem;
+  font-weight: 500;
 }
 
 .hidden {

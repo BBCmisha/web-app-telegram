@@ -50,7 +50,7 @@ class Cart {
 
   get totalPrice() {
     return this.products.length
-      ? this.products.reduce((prev, curr) => prev + curr, 0)
+      ? this.products.reduce((prev, curr) => prev + curr.price * curr.count, 0)
       : 0
   }
 
@@ -82,23 +82,11 @@ class Cart {
 }
 
 const cart = new Cart()
+const cartNode = document.querySelector('.cart')
+
+// EVENT listeners for buttons
+// -----------------------------------------------
 document.addEventListener('DOMContentLoaded', init);
-
-function init() {
-  Telegram.WebApp.ready()
-  Telegram.WebApp.expand()
-  showProductData()
-  prepareProductItemAddBtns()
-  prepareProductActivitiesBtns()
-}
-
-function showProductData() {
-  const productsNodeContent = products.reduce((prev, curr) => prev + getProductHTMLElement(curr), '')
-
-  document
-    .querySelector('.products')
-    .innerHTML = productsNodeContent
-}
 
 function prepareProductItemAddBtns() {
   document
@@ -114,27 +102,21 @@ function prepareProductActivitiesBtns() {
     })
 }
 
-function getProductHTMLElement(product) {
-  return `
-    <div class="products__item" data-productId="${product.id}">
-      <div class="products__item-img-wrapper">
-        <img class="products__item-img" src="${product.imageUrl}" alt="food" />
-      </div>
-      <div class="products__item-info">
-        <span class="products__item-name">${product.name}</span>
-        <span class="products__item-description">${product.description}</span>
-        <span class="products__item-price">${product.price}$</span>
-      </div>
-      <div class="products__item-activities hidden">
-        <button class="products__item-activities-btn products__item-activities-btn_add">+</button>
-        <span class="products__item-activities-price">0</span>
-        <button class="products__item-activities-btn products__item-activities-btn_subtract">-</button>
-      </div>
-      <button class="products__item-btn">+</button>
-    </div>
-  `
-}
+// const showCartBtn = document.querySelector('.show-btn');
+// const closeCartBtn = document.querySelector('.cart__edit-button');
+// const cartNode = document.querySelector('.cart')
 
+// showCartBtn.addEventListener('click', (event) => {
+//   showCart()
+//   cartNode.classList.remove('hidden')
+// })
+
+// closeCartBtn.addEventListener('click', (event) => {
+//   cartNode.classList.add('hidden')  
+// })
+
+// HANDLERS for buttons click
+// -----------------------------------------------
 function addBtnHandler(event) {
   const el = event.target
   const elParent = el.parentElement
@@ -170,10 +152,100 @@ function activitiesBtnHandler(event) {
   el.blur()
 }
 
+// FUNCTIONS for inserting content into DOM
+// -----------------------------------------------
+function drawProductData() {
+  const productsNodeContent = products.reduce((prev, curr) => prev + getProductHTMLElement(curr), '')
+
+  document
+    .querySelector('.products')
+    .innerHTML = productsNodeContent
+}
+
 function drawProductCount(productNode) {
   const priceNode = productNode.querySelector('.products__item-activities-price')
   const productId = productNode.dataset.productid
   const count = cart.getProductCount(productId)
 
   priceNode.innerHTML = count
+}
+
+function drawCart() {
+  const cartNode = document.querySelector('.cart__content')
+  const contentProducts = cart.products.reduce((prev, curr) => prev + getCartItemHTMLElement(curr), '')
+  const content = getCartContentHeadHTMLElement()
+    + contentProducts
+    + getCartTotalHTMLElement(cart.totalPrice)
+  
+  cartNode.innerHTML = content
+}
+
+// FUNCTIONS for creating HTML elements
+// -----------------------------------------------
+function getProductHTMLElement(product) {
+  return `
+    <div class="products__item" data-productId="${product.id}">
+      <div class="products__item-img-wrapper">
+        <img class="products__item-img" src="${product.imageUrl}" alt="food" />
+      </div>
+      <div class="products__item-info">
+        <span class="products__item-name">${product.name}</span>
+        <span class="products__item-description">${product.description}</span>
+        <span class="products__item-price">${product.price} грн</span>
+      </div>
+      <div class="products__item-activities hidden">
+        <button class="products__item-activities-btn products__item-activities-btn_add">+</button>
+        <span class="products__item-activities-price">0</span>
+        <button class="products__item-activities-btn products__item-activities-btn_subtract">-</button>
+      </div>
+      <button class="products__item-btn">+</button>
+    </div>
+  `
+}
+
+function getCartItemHTMLElement(product) {
+  return `
+    <div class="cart__content-row">
+      <div class="cart__content-item-img-wrapper">
+        <img class="cart__content-item-img" src="${product.imageUrl}" alt="cart food" />
+      </div>
+      <span class="cart__content-item-name">${product.name}</span>
+      <span class="cart__content-item-count">${product.count}</span>
+      <span class="cart__content-item-price">${product.price} грн</span>
+    </div>
+  `
+}
+
+function getCartContentHeadHTMLElement() {
+  return `
+    <div class="cart__content-head">
+      <span class="cart__content-head-img"></span>
+      <span class="cart__content-head-name">Назва</span>
+      <span class="cart__content-head-count">К-сть</span>
+      <span class="cart__content-head-price">Ціна</span>
+    </div>
+  `
+}
+
+function getCartTotalHTMLElement(total) {
+  return `
+    <div class="cart__total">
+      <span class="cart__total-txt">Усього:</span>
+      <span class="cart__total-price">${total} грн</span>
+    </div>
+  `
+}
+
+// INIT function
+function init() {
+  Telegram.WebApp.ready()
+  Telegram.WebApp.expand()
+  Telegram.WebApp.MainButton.text('Оформити замовлення')
+  Telegram.WebApp.MainButton.color('#F05D23')
+  Telegram.WebApp.MainButton.textColor('#FFEFE7')
+  Telegram.WebApp.MainButton.show()
+
+  showProductData()
+  prepareProductItemAddBtns()
+  prepareProductActivitiesBtns()
 }
