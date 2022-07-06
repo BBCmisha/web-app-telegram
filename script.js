@@ -266,7 +266,7 @@ function showWebAppMainButton(text) {
 
 Telegram.WebApp.onEvent('mainButtonClicked', () => {
   if (cart.isVisible) {
-    Telegram.WebApp.sendData('TEST data')
+    Telegram.WebApp.close()
   } else {
     cart.isVisible = true
     drawCart()
