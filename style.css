@@ -19,6 +19,7 @@ body {
 
 .main__title {
   margin: 24px 0;
+  text-align: center;
 }
 
 .main__empty {
@@ -40,4 +41,5 @@ body {
 
 .main__empty-description {
   font-size: 18px;
+  text-align: center;
 }
