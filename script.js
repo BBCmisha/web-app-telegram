@@ -240,9 +240,9 @@ function getCartTotalHTMLElement(total) {
 function init() {
   Telegram.WebApp.ready()
   Telegram.WebApp.expand()
-  Telegram.WebApp.MainButton.text('Оформити замовлення')
-  Telegram.WebApp.MainButton.color('#F05D23')
-  Telegram.WebApp.MainButton.textColor('#FFEFE7')
+  Telegram.WebApp.MainButton.text = 'Оформити замовлення'
+  Telegram.WebApp.MainButton.color = '#F05D23'
+  Telegram.WebApp.MainButton.textColor = '#FFEFE7'
   Telegram.WebApp.MainButton.show()
 
   showProductData()
