@@ -85,6 +85,7 @@ const cart = new Cart()
 document.addEventListener('DOMContentLoaded', init);
 
 function init() {
+  Telegram.WebApp.ready()
   Telegram.WebApp.expand()
   showProductData()
   prepareProductItemAddBtns()
