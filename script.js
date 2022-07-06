@@ -269,6 +269,7 @@ Telegram.WebApp.onEvent('mainButtonClicked', () => {
     Telegram.WebApp.sendData('TEST data')
   } else {
     cart.isVisible = true
+    drawCart()
     cartNode.classList.remove('hidden')
     Telegram.WebApp.MainButton.text = 'Сплатити'
   }
