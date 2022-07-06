@@ -245,7 +245,7 @@ function init() {
   Telegram.WebApp.MainButton.textColor = '#FFEFE7'
   Telegram.WebApp.MainButton.show()
 
-  showProductData()
+  drawProductData()
   prepareProductItemAddBtns()
   prepareProductActivitiesBtns()
 }
