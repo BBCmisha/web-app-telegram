@@ -210,7 +210,7 @@ function getCartItemHTMLElement(product) {
       </div>
       <span class="cart__content-item-name">${product.name}</span>
       <span class="cart__content-item-count">${product.count}</span>
-      <span class="cart__content-item-price">${product.price} грн</span>
+      <span class="cart__content-item-price">${product.price * product.count} грн</span>
     </div>
   `
 }
