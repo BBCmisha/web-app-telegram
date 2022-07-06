@@ -1,0 +1,39 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.main__title {
+  margin: 24px 0;
+}
+
+.main__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main__empty-img {
+  width: 200px;
+  margin-bottom: 24px;
+}
+
+.main__empty-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 14px;
+}
+
+.main__empty-description {
+  font-size: 18px;
+}
