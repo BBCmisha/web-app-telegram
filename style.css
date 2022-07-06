@@ -48,8 +48,9 @@ body {
 
 .products__item {
   display: flex;
+  align-items: center;
   position: relative;
-  height: 9rem;
+  height: 10rem;
   background-color: rgba(254, 222, 199, 0.15);
   padding: 1.2rem 1.6rem 1.2rem 0.8rem;
   border-radius: 1.6rem;
@@ -74,15 +75,17 @@ body {
 .products__item-info {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .products__item-name {
   text-transform: uppercase;
   font-weight: 700;
+  margin-bottom: 0.4rem;
 }
 
 .products__item-description {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: rgba(255, 239, 231, 0.5);
 }
 
@@ -93,7 +96,7 @@ body {
 }
 
 .products__item-activities {
-  display: none;
+  display: flex;
   flex-direction: column;
   position: absolute;
   top: 50%;
@@ -101,7 +104,7 @@ body {
   transform: translateY(-50%);
 }
 
-.products__item-activities > button {
+.products__item-activities-btn {
   width: 3rem;
   height: 3rem;
   border: none;
@@ -110,9 +113,13 @@ body {
   font-weight: 500;
   font-size: 1.8rem;
   border-radius: 50%;
+  cursor: pointer;
+}
+.products__item-activities-btn:focus {
+  transform: scale(0.9);
 }
 
-.products__item-activities > span {
+.products__item-activities-price {
   text-align: center;
 }
 
@@ -129,4 +136,17 @@ body {
   font-size: 1.8rem;
   font-weight: 500;
   transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.products__item-btn:focus {
+  transform: scale(0.9) translateY(-50%);
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: flex;
 }
