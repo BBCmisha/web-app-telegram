@@ -46,6 +46,7 @@ const products = [
 class Cart {
   constructor() {
     this.products = [];
+    this.isVisible = false;
   }
 
   get totalPrice() {
@@ -83,6 +84,7 @@ class Cart {
 
 const cart = new Cart()
 const cartNode = document.querySelector('.cart')
+const closeCartBtn = document.querySelector('.cart__edit-button');
 
 // EVENT listeners for buttons
 // -----------------------------------------------
@@ -102,18 +104,11 @@ function prepareProductActivitiesBtns() {
     })
 }
 
-// const showCartBtn = document.querySelector('.show-btn');
-// const closeCartBtn = document.querySelector('.cart__edit-button');
-// const cartNode = document.querySelector('.cart')
-
-// showCartBtn.addEventListener('click', (event) => {
-//   showCart()
-//   cartNode.classList.remove('hidden')
-// })
-
-// closeCartBtn.addEventListener('click', (event) => {
-//   cartNode.classList.add('hidden')  
-// })
+closeCartBtn.addEventListener('click', (event) => {
+  cartNode.classList.add('hidden')
+  Telegram.WebApp.MainButton.text = 'Оформити замовлення'
+  cart.isVisible = false
+})
 
 // HANDLERS for buttons click
 // -----------------------------------------------
@@ -128,6 +123,8 @@ function addBtnHandler(event) {
   activitiesBlock.classList.remove('hidden');
   cart.addProduct(product)
   drawProductCount(elParent)
+
+  if (!Telegram.WebApp.MainButton.isVisible) showWebAppMainButton('Оформити замовення')
 }
 
 function activitiesBtnHandler(event) {
@@ -148,6 +145,8 @@ function activitiesBtnHandler(event) {
     }
     cart.removeProduct(product)
     drawProductCount(activitiesEl.parentElement)
+
+    if (!cart.totalPrice) Telegram.WebApp.MainButton.hide()
   }
   el.blur()
 }
@@ -237,15 +236,40 @@ function getCartTotalHTMLElement(total) {
 }
 
 // INIT function
+// -----------------------------------------------
 function init() {
-  Telegram.WebApp.ready()
-  Telegram.WebApp.expand()
-  Telegram.WebApp.MainButton.text = 'Оформити замовлення'
-  Telegram.WebApp.MainButton.color = '#F05D23'
-  Telegram.WebApp.MainButton.textColor = '#FFEFE7'
-  Telegram.WebApp.MainButton.show()
+  initWebApp()
+  initWebAppMainButton()
 
   drawProductData()
   prepareProductItemAddBtns()
   prepareProductActivitiesBtns()
 }
+
+
+// TELEGRAM WEB APP functions
+// -----------------------------------------------
+function initWebApp() {
+  Telegram.WebApp.ready()
+  Telegram.WebApp.expand()
+}
+
+function initWebAppMainButton() {
+  Telegram.WebApp.MainButton.color = '#F05D23'
+  Telegram.WebApp.MainButton.textColor = '#FFEFE7'
+}
+
+function showWebAppMainButton(text) {
+  Telegram.WebApp.MainButton.text = text
+  Telegram.WebApp.MainButton.show()
+}
+
+Telegram.WebApp.onEvent('mainButtonClicked', () => {
+  if (cart.isVisible) {
+    Telegram.WebApp.sendData('TEST data')
+  } else {
+    cart.isVisible = true
+    cartNode.classList.remove('hidden')
+    Telegram.WebApp.MainButton.text = 'Сплатити'
+  }
+})
