@@ -2,43 +2,43 @@ const products = [
   {
     id: 1,
     name: 'Beef burger',
-    description: 'Beef patty, Onion...',
-    price: 10,
+    description: 'Котлета з яловичини, цибуля...',
+    price: 55,
     imageUrl: 'imgs/beef-burger.png',
   },
   {
     id: 2,
     name: 'Hawaiian burger',
-    description: 'Beef patty, Grilled Pineapple...',
-    price: 12.5,
+    description: 'Котлета з яловичини, смажені ананаси...',
+    price: 48,
     imageUrl: 'imgs/hawaiian-burger.png',
   },
   {
     id: 3,
     name: 'Spicy buffalo',
-    description: 'Crispy Chicken, Mozza Cheese...',
-    price: 11,
+    description: 'Хрустка курка, сир моцарела...',
+    price: 50,
     imageUrl: 'imgs/spicy-buffalo.png',
   },
   {
     id: 4,
     name: 'Margherita',
-    description: 'Tomato sauce, Mozzarella...',
-    price: 15,
+    description: 'Томати, сир моцарела...',
+    price: 130,
     imageUrl: 'imgs/margherita.png',
   },
   {
     id: 5,
     name: 'Four cheese',
-    description: 'Cheese, Mozza Cheese...',
-    price: 16,
+    description: 'Сир, сир моцарела...',
+    price: 150,
     imageUrl: 'imgs/four-cheese.png',
   },
   {
     id: 6,
     name: 'Cola',
-    description: 'Cola, Ice...',
-    price: 3,
+    description: 'Кола, лід...',
+    price: 15,
     imageUrl: 'imgs/cola.png',
   },
 ]
@@ -266,8 +266,7 @@ function showWebAppMainButton(text) {
 
 Telegram.WebApp.onEvent('mainButtonClicked', () => {
   if (cart.isVisible) {
-    // Telegram.WebApp.sendData('TEST data')
-    Telegram.WebApp.close()
+    Telegram.WebApp.sendData('TEST data')
   } else {
     cart.isVisible = true
     drawCart()
