@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+/*
+
+orange-color:     #F6572A
+dark-color:       #163B32
+light-color:      #FFEFE7       opacity: #FFEFE77E
+purpure-color:    #FEDEC7
+
+*/
+
 *,
 *::after,
 *::before {
@@ -6,40 +16,118 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: 10px;
+}
+
 body {
-  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.6rem;
+  color: #FFEFE7;
+  background-color: #163B32;
 }
 
 .main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+  padding: 2.4rem 1.2rem;
 }
 
 .main__title {
-  margin: 24px 0;
-  text-align: center;
+
 }
 
-.main__empty {
+.main__subtitle {
+  font-size: 1.2rem;
+  color: #FFEFE77E;
+  margin-bottom: 0.8rem;
+}
+
+.products {
+  margin-top: 4rem;
+  padding-right: 1.2rem;
+}
+
+.products__item {
+  display: flex;
+  position: relative;
+  height: 9rem;
+  background-color: #fedec72a;
+  padding: 1.2rem 1.6rem 1.2rem 0.8rem;
+  border-radius: 1.6rem;
+}
+
+.products__item:not(:last-child) {
+  margin-bottom: 2.4rem;
+}
+
+.products__item-img-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10rem;
+  height: 6.6rem;
+  overflow: hidden;
+}
+
+.products__item-img {
+  height: 100%;
+}
+
+.products__item-info {
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
-.main__empty-img {
-  width: 200px;
-  margin-bottom: 24px;
+.products__item-name {
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
-.main__empty-title {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 14px;
+.products__item-description {
+  font-size: 1.4rem;
+  color: #FFEFE77E;
 }
 
-.main__empty-description {
-  font-size: 18px;
+.products__item-price {
+  margin-top: auto;
+  font-weight: 700;
+  color: #F6572A;
+}
+
+.products__item-activities {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  right: -1.5rem;
+  transform: translateY(-50%);
+}
+
+.products__item-activities > button {
+  width: 3rem;
+  height: 3rem;
+  border: none;
+  background: #F6572A;
+  color: #FFEFE7;
+  font-weight: 500;
+  font-size: 1.8rem;
+  border-radius: 50%;
+}
+
+.products__item-activities > span {
   text-align: center;
+}
+
+.products__item-btn {
+  position: absolute;
+  top: 50%;
+  right: -2rem;
+  width: 4rem;
+  height: 4rem;
+  background: #F6572A;
+  border: none;
+  border-radius: 50%;
+  color: #FFEFE7;
+  font-size: 1.8rem;
+  font-weight: 500;
+  transform: translateY(-50%);
 }
